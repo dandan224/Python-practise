@@ -1,0 +1,31 @@
+ remove the element in the linked list
+
+
+Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+ def removeElements(self, head, val):
+   """
+   input: ListNode head, int val
+   return: ListNode
+   """
+   # write your solution here
+   current = head
+   prev = None
+   while current is not None:
+           # If current.val == val, there are 2 cases
+           # Either current is an intermediate node or the head node
+           # If it is an intermediate node then simply point prev.next to current.next i.e. skip the current node.
+           # If it is a head node then change head to head.next.
+     if current.val == val:
+           if prev:
+             prev.next = current.next
+           else:
+             head = head.next
+     else:
+         prev = current
+     current = current.next
+   return head
