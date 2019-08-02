@@ -1,0 +1,25 @@
+remove duplicate from the linked list
+Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+ def removeDup(self, head):
+   """
+   input: ListNode head
+   return: ListNode
+   """
+   # write your solution here
+   if not head:
+     return
+   curr = head
+   while curr and curr.next:
+     if curr.val == curr.next.val:
+       new = curr.next.next
+       curr.next = None
+       curr.next = new
+      
+     else:
+       curr = curr.next
+   return head
