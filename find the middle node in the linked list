@@ -1,0 +1,52 @@
+return the middle node in the linked list
+
+solution#1 by using two pointers:
+Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+ def middleNode(self, head):
+   """
+   input: ListNode head
+   return: ListNode
+   """
+   # write your solution here
+   if not head:
+     return
+   if not head.next:
+     return head
+   slow = fast = head
+   #prev = slow
+   while fast and fast.next:
+     #prev = slow
+     slow = slow.next
+     fast = fast.next.next
+   return slow
+
+Solution #2:
+Traverse the linked list, get the size of the linked list, then get the node of count/2.
+Def ListNode(object):
+  Self.val = val
+  Self.next = None
+  Self._size = 0
+
+If not head:
+  Return
+Count = self.traverse(head)
+Node = search(head,count/2)
+Def traverse(head):
+  If not head:
+    Return
+  While head.next:
+    Head = head.next
+    Size += 1
+Def search(head, index):
+  If not head or index < 0:
+    Return
+  For _ in xrange(index):
+    Head = head.next
+    If head is None:
+       Return 
+  Return head
