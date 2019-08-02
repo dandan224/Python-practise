@@ -1,0 +1,31 @@
+Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+  def removeDup(self, head):
+    """
+    input: ListNode head
+    return: ListNode
+    """
+    # write your solution here
+    if not head:
+      return
+    curr = head
+    fake_head = prev = ListNode(None)
+    fake_head.next = curr
+    while curr and curr.next:
+      if curr.val == curr.next.val:
+        while curr and curr.next and curr.val == curr.next.val:
+          curr = curr.next
+        curr = curr.next
+        prev.next = curr
+      else:
+        prev = prev.next
+        curr = curr.next
+    return fake_head.next
+    
+    # time: O(n)
+    # space: O(1)
+
