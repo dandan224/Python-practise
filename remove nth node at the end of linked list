@@ -1,0 +1,37 @@
+ # solution#2:
+ Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+  def removeNthFromEnd(self, head, n):
+    """
+    input: ListNode head, int n
+    return: ListNode
+    """
+    # write your solution here
+    if not head:
+      return
+    if n < 0:
+      return head
+    # using two pointers main and ref pointing to the head
+    fake_head = ListNode(None)
+    fake_head.next = head
+    main = fake_head
+    ref = head 
+    count = 0
+    while count < n:
+    # pay attention to the following statements order
+    # n is greater than the size of the linked list
+      if ref is None:
+        return head
+
+      ref = ref.next
+      count += 1
+      
+    while ref and main:
+      ref = ref.next
+      main = main.next
+    main.next = main.next.next
+    return fake_head.next
