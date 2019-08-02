@@ -1,0 +1,122 @@
+First case: Given a linked list and a target value T, partition it such that all nodes less than T are listed before the nodes larger than or equal to target value T. 
+
+Definition for singly-linked list.
+ # class ListNode(object):
+ #     def __init__(self, x):
+ #         self.val = x
+ #         self.next = None
+class Solution(object):
+   def partition(self, head, target):
+     """
+     input: ListNode head, int target
+     return: ListNode
+     """
+     # write your solution here
+   # initialize the two linkelist
+     if not head:
+       return
+     small_head,small_tail = None, None
+     equal_head,equal_tail = None, None
+     #large_head,large_tail = None, None
+
+     # iterate the original linkedlist
+     while head:
+       # equal
+       if head.val >= target:
+         if equal_head is None:
+           equal_head = equal_tail = head
+         else:
+           equal_tail.next = head
+           equal_tail = equal_tail.next
+       # less
+       else:
+         if small_head is None:
+           small_head = small_tail = head
+         else:
+           small_tail.next = head
+           small_tail = small_tail.next
+      
+       head = head.next
+
+     #connect the linked list
+     if equal_head:
+       equal_tail.next = None
+
+     # if the samll list is none
+       if small_head is None:
+         return equal_head
+       else:
+         small_tail.next = equal_head
+         return small_head
+     # if small list not None and equal is None
+     else:
+       small_tail.next = None
+       return small_head
+
+Second case:
+partition: the node which is smaller than the target put before the target, and the euqal in the middle, and the larger one after the equal one, keep the original order 
+
+Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+ def partition(self, head, target):
+   """
+   input: ListNode head, int target
+   return: ListNode
+   """
+   # write your solution here
+  # initialize the three linkelist
+   if not head:
+     return
+   small_head,small_tail = ListNode(None), ListNode(None)
+   equal_head,equal_tail = ListNode(None), ListNode(None)
+   large_head,large_tail = ListNode(None), ListNode(None)
+
+   # iterate the original linkedlist
+   while head:
+     # equal
+     if head.val == target:
+       if equal_head == None:
+         equal_head = equal_tail = head
+       else:
+         equal_tail.next = head
+         equal_tail = equal_tail.next
+     # less
+     elif head.val < target:
+       if small_head == None:
+         small_head = small_tail = head
+       else:
+         small_tail.next = head
+         samll_tail = small_tail.next
+     else:
+       if large_head == None:
+         large_head = large_tail = head
+       else:
+         large_tail.next = head
+         large_tail = large_tail.next
+     head = head.next
+
+   #connect the three linked list
+   # set the large_tail as the tail if the large_tail not None
+   if large_tail:
+     large_tail.next = None
+
+   # if the samll list is none
+   if small_head is None:
+     if equal_head is None:
+       return large_head
+     else:
+       equal_tail.next = large_head
+       return equal_head
+   # if samll list not None and equal is None
+   else:
+     if equal_head is None:
+       samll_tail.next = large_head
+       return small_head
+     else:
+       small_tail.next = equal_head
+       equal_tail.next = large_head
+       return small_head
