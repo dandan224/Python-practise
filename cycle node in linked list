@@ -42,7 +42,7 @@ class Solution(object):
     return: ListNode
     """
     # write your solution here
-    if not head or head.next:
+    if not head or not head.next:
       return
     slow = fast = head
   
@@ -51,8 +51,8 @@ class Solution(object):
       fast = fast.next.next
       if slow == fast:
         break
-      
-    return None
+    if slow !=fast:
+      return None
     slow = head
     while slow != fast:
       slow = slow.next
