@@ -1,0 +1,85 @@
+# There are two ways to solve this problem
+# Solution 1(extra space cost)
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+        
+class Solution(object):
+    def isPalindrome(self,head):
+        head1 = self.copy_list(head)
+        head2 = self.reverse_list(head)
+        while head1 and head2:
+            if head1.val != head2.val:
+                return False
+            head1 = head1.next
+            head2 = head2.next
+        return True
+            
+        
+    def copy_list(self, head):
+        fake_head = ListNode(None)
+        cur = fake_head
+        while head:
+            cur.next = ListNode(head.val)
+            head = head.next
+            cur = cur.next
+        return fake_head.next
+            
+            
+    
+    def reverse_list(self, node):
+    
+        previous_node = None
+        while node:
+          next_node = node.next
+          node.next = previous_node
+          previous_node = node
+          node = next_node
+        return previous_node
+        
+Solution #2: find the middle node, cut at middle, reverse the second half
+Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+  def isPalindrome(self, head):
+    """
+    input: ListNode head
+    return: boolean
+    """
+    # write your solution here
+    if not head or not head.next:
+      return True
+    
+    prev_mid = self.find_mid(head)
+    # the mid point
+    mid = prev_mid.next
+    prev_mid.next = None
+
+    new_head = self.reverse(mid)
+    while head and new_head:
+      if head.val != new_head.val:
+        return False
+      head = head.next
+      new_head = new_head.next
+    return True
+  def find_mid(self, head):
+    fake_head = ListNode(None)
+    fake_head.next = head
+    slow = fast = fake_head
+    while fast.next and fast.next.next:
+      slow = slow.next
+      fast = fast.next.next
+    return slow
+      
+  def reverse(self, head):
+    prev_node = None
+    while head:
+      next = head.next
+      head.next = prev_node
+      prev_node = head
+      head = next
+    return prev_node
