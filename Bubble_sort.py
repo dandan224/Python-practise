@@ -1,5 +1,5 @@
- Bubble sort:
-Solution 1:
+ ###Bubble sort:
+###Solution 1:
 def bubblesort(lst):
     for n in range(len(lst)-1,0,-1):
         print('level:',n)
