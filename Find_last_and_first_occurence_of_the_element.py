@@ -1,4 +1,4 @@
-Find last occurence of the element 
+###Find last occurence of the element 
 class Solution(object):
  def lastOccur(self, array, target):
    """
