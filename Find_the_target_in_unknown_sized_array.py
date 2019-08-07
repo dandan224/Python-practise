@@ -1,4 +1,4 @@
-Find the target in unknown sized array
+####Find the target in unknown sized array
 class Solution(object):
  def search(self, dic, target):
    """
