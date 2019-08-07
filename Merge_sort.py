@@ -1,4 +1,4 @@
-Merge sort:
+##Merge sort:
 class Solution(object):
  def mergeSort(self, array):
    """
