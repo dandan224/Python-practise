@@ -1,5 +1,5 @@
-Insertion sort:
-Solution #1:
+###Insertion sort:
+##Solution #1:
 def insert_num(array,num):
     idx = len(array) - 1
     array.append(num)
