@@ -1,4 +1,4 @@
-Quick sort:
+###Quick sort:
 class Solution(object):
  def quickSort(self, array):
    """
